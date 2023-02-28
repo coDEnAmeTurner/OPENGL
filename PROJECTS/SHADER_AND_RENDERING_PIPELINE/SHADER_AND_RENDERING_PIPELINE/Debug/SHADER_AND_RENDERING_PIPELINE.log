@@ -1,0 +1,4 @@
+﻿  main.cpp
+D:\SELF TAUGHT\OPENGL\Projects\SHADER_AND_RENDERING_PIPELINE\SHADER_AND_RENDERING_PIPELINE\main.cpp(137,44): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+D:\SELF TAUGHT\OPENGL\Projects\SHADER_AND_RENDERING_PIPELINE\SHADER_AND_RENDERING_PIPELINE\main.cpp(137,24): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+  SHADER_AND_RENDERING_PIPELINE.vcxproj -> D:\SELF TAUGHT\OPENGL\Projects\SHADER_AND_RENDERING_PIPELINE\Debug\SHADER_AND_RENDERING_PIPELINE.exe

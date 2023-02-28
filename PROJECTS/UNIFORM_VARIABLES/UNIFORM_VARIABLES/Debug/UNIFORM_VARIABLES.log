@@ -1,0 +1,4 @@
+﻿  main.cpp
+D:\SELF TAUGHT\OPENGL\PROJECTS\UNIFORM_VARIABLES\UNIFORM_VARIABLES\main.cpp(11,29): warning C4838: conversion from 'size_t' to 'int' requires a narrowing conversion
+D:\SELF TAUGHT\OPENGL\PROJECTS\UNIFORM_VARIABLES\UNIFORM_VARIABLES\main.cpp(67): warning C4715: 'makeShader': not all control paths return a value
+  UNIFORM_VARIABLES.vcxproj -> D:\SELF TAUGHT\OPENGL\PROJECTS\UNIFORM_VARIABLES\Debug\UNIFORM_VARIABLES.exe
