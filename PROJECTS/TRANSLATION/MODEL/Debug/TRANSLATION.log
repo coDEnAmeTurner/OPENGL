@@ -1,4 +1,0 @@
-﻿  main.cpp
-D:\SELF TAUGHT\OPENGL\PROJECTS\TRANSLATION\TRANSLATION\main.cpp(14,29): warning C4838: conversion from 'size_t' to 'int' requires a narrowing conversion
-D:\SELF TAUGHT\OPENGL\PROJECTS\TRANSLATION\TRANSLATION\main.cpp(70): warning C4715: 'makeShader': not all control paths return a value
-  TRANSLATION.vcxproj -> D:\SELF TAUGHT\OPENGL\PROJECTS\TRANSLATION\Debug\TRANSLATION.exe
