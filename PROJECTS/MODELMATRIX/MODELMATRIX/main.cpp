@@ -21,7 +21,7 @@ GLuint compileShader(const char* source, GLenum type)
 	{
 		printf("vShader compilation failed.\n");
 		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
-		char* buffer = (char*)alloca(length * sizeof(char));
+		char* buffer = (char*)_malloca(length * sizeof(char));
 		glGetShaderInfoLog(shader, length, NULL, buffer);
 		printf(buffer + '\n');
 		glDeleteShader(shader);
@@ -47,7 +47,7 @@ GLuint makeShader(const char* vertexSource, const char* fragmentSource) {
 		{
 			printf("Program linking failed.\n");
 			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
-			char* buffer = (char*)alloca(length * sizeof(char));
+			char* buffer = (char*)_malloca(length * sizeof(char));
 			glGetProgramInfoLog(program, length, NULL, buffer);
 			printf(buffer, '\n');
 			glDeleteProgram(program);
@@ -59,7 +59,7 @@ GLuint makeShader(const char* vertexSource, const char* fragmentSource) {
 		{
 			printf("Program validation failed.\n");
 			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
-			char* buffer = (char*)alloca(length * sizeof(char));
+			char* buffer = (char*)_malloca(length * sizeof(char));
 			glGetProgramInfoLog(program, length, NULL, buffer);
 			printf(buffer, '\n');
 			glDeleteProgram(program);
@@ -131,18 +131,21 @@ int main()
 		#version 330\n\
 		layout (location = 0) in vec2 pos;\n\
 		uniform mat4 model;\n\
+		out vec4 vColor;\n\
 		void main()\n\
 		{\n\
-			gl_Position = model * vec4(pos.x * 0.4f, pos.y * 0.4f, 1.0f, 1.0f);\n\
+			gl_Position = model * vec4(pos.x, pos.y, 1.0f, 1.0f);\n\
+			vColor = vec4(clamp(pos, 0.0f, 1.0f), 0.0f, 1.0f);\n\
 		}\n\
 		";
 	const char* fragmentSource =
 		"\n\
 		#version 330\n\
 		layout (location = 0) out vec4 color;\n\
+		in vec4 vColor;\n\
 		void main()\n\
 		{\n\
-			color = vec4(1.0f, 1.0f, 0.0f, 1.0f);\n\
+			color = vColor;\n\
 		}\n\
 		";
 
@@ -153,7 +156,7 @@ int main()
 	glUseProgram(shader);
 	GLint uniformModel = glGetUniformLocation(shader, "model");
 	glUseProgram(0);
-	GLboolean direction = true;
+	bool direction = true;
 	GLfloat offset = 0.0f;
 	GLfloat increment = 0.00058f;
 	GLfloat currIncrement = 0.000003f;
@@ -171,7 +174,8 @@ int main()
 
 		glm::mat4 model(1.0f);
 		model = glm::rotate(model, currAngle * 180 / glm::pi<float>(), glm::vec3(0.0f, 0.0f, 1.0f));
-		model = glm::translate(model, glm::vec3(offset, 0.0f, 0.0f));
+		//model = glm::translate(model, glm::vec3(offset, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
